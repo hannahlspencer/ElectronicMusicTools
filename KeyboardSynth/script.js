@@ -1,12 +1,26 @@
-var audio_context = window.AudioContext || window.webkitAudioContext;  
+  var audio_context = window.AudioContext || window.webkitAudioContext;  
   
   var context = new audio_context();
   var oscillator = context.createOscillator();
+  var filter = context.createBiquadFilter();
   
-  oscillator.connect(context.destination);
+  oscillator.connect(filter);
+  filter.connect(context.destination);
+  //oscillator.connect(context.destination);
 
   oscillator.frequency.value = 600;  
-  //oscillator.start();
+  filter.frequency.value = 100;
+  
+  
+  oscillator.type = 'sawtooth';
+  
+  
+ // oscillator.start();
+ 
+ function changeFilter(mx, my) {
+     filter.frequency.value = mx * 10;
+     filter.Q.value = my / 10;
+ }
   
   function setNote(key) {
     //first row of white notes
