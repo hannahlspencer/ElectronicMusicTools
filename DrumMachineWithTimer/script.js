@@ -16,7 +16,7 @@ setInterval(function() {
     
 }, 200);
 
-loadSample('cl_hat_3001.wav', function (buffer){
+loadSample('CY0025.WAV', function (buffer){
     hat = buffer; 
 });
 
