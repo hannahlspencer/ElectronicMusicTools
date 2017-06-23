@@ -9,12 +9,30 @@ var hat_seq = [1, 1, 0, 1, 0, 1, 0, 1];
 var step = 0;
 
 setInterval(function() {
-    if (hat_seq[step % hat_seq.length] == 1) {
-        playHat();
+var step = 0;
+var wait_time = 0.5;
+var got_up_to;
+var interval  = 0.125/2;
+
+setInterval(function() {
+    var now = con.currentTime;
+    var max_future_time = now + (wait_time*1.5);
+    if(got_up_to > now) {
+        now = got_up_to;
     }
-    step = step+1;
     
-}, 200);
+    while(now <= max_future_time) {
+        step++;
+     if (hat_seq[step % hat_seq.length] === 0) {
+        //playHat(now);
+    }
+    now += interval;
+
+    }
+    got_up_to = now;
+   
+    
+}, wait_time*1000);
 
 loadSample('CY0025.WAV', function (buffer){
     hat = buffer; 
